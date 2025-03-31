@@ -48,6 +48,7 @@ const BarChart = ({ data }: { data: any }) => {
           x: {
             stacked: true,
             ticks: {
+              autoSkip: false,
               padding: 30,
             }
           },
@@ -66,9 +67,17 @@ const BarChart = ({ data }: { data: any }) => {
             xAxis.ticks.forEach((value: any, index: any) => {
               const image = images[index]
               if (!image) return
-              const x = xAxis.getPixelForTick(index) - 15;
+              const tickX = xAxis.getPixelForTick(index);
+              let categoryWidth;
+              if (index < xAxis.ticks.length - 1) {
+                categoryWidth = xAxis.getPixelForTick(index + 1) - tickX;
+              } else {
+                categoryWidth = (xAxis.right - tickX) * 2;
+              }
+              const emoteWidth = Math.min(categoryWidth - 2, 30);
+              const x = tickX - emoteWidth / 2;
               const y = yAxis.bottom + 5;
-              ctx.drawImage(images[index], x, y, 30, 30);
+              ctx.drawImage(images[index], x, y, emoteWidth, emoteWidth);
             });
           },
         },
