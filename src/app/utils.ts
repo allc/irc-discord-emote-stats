@@ -15,7 +15,7 @@ export async function getOrInitApp() {
   return app;
 }
 
-export async function syncFromChatLog(start_time: number | undefined = undefined, end_time: number | undefined = undefined) { // start and end time are not inclusive
+export async function syncFromChatLog(start_time: bigint | undefined = undefined, end_time: number | undefined = undefined) { // start and end time are not inclusive
   if (start_time === undefined) {
     start_time = await getLastEmoteTimestamp();
   }
@@ -101,7 +101,7 @@ async function getLastEmoteTimestamp() {
   if (lastEmote) {
     return lastEmote.timestamp;
   }
-  return 0;
+  return BigInt(0);
 }
 
 export async function getEmoteLog(start_time: number | undefined = undefined, end_time: number | undefined = undefined) { // start and end time are inclusive
