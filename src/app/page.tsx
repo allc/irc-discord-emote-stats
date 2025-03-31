@@ -5,6 +5,9 @@ export default async function Home() {
   await syncFromChatLog();
   const emoteLog = await getEmoteLog();
 
+  const channels = emoteLog.map((log: any) => log.channel);
+  const uniqueChannels = [...new Set(channels)];
+
   // get emote stats for selected actions
   const actions = ['message', 'reaction'];
   const actionsAttributes: { [action: string]: any } = {
@@ -48,8 +51,19 @@ export default async function Home() {
   };
 
   return (
-    <>
-      <BarChart data={data} />
-    </>
+    <div className='flex w-full h-screen p-4'>
+      <div className='w-1/12'>
+        <ul>
+          {uniqueChannels.map((channel: any) => (
+            <li key={channel}>
+              {channel}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className='w-11/12'>
+        <BarChart data={data} />
+      </div>
+    </div>
   );
 }
