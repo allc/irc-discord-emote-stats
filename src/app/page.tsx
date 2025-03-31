@@ -1,4 +1,4 @@
-import { getEmoteLog, getOrInitApp, syncFromChatLog } from './utils'
+import { getEmoteLog, syncFromChatLog } from './utils'
 import BarChart from './BarChart'
 
 export default async function Home() {
@@ -51,17 +51,30 @@ export default async function Home() {
   };
 
   return (
-    <div className='flex w-full h-screen p-4'>
-      <div className='w-1/12'>
-        <ul>
-          {uniqueChannels.map((channel: any) => (
-            <li key={channel}>
-              {channel}
-            </li>
-          ))}
-        </ul>
+    <div>
+      <div className='shadow-xl m-2'>
+        <div className='flex'>
+          <div className='m-4 flex-initial'>
+            <label>Start Date: </label>
+            <input type='date' />
+          </div>
+          <div className='m-4 flex-initial'>
+            <label>End Date: </label>
+            <input type='date' />
+          </div>
+          <button className='m-2 p-2 bg-blue-500 text-white shadow-sm shadow-blue-500/50 hover:bg-blue-600 active:bg-blue-700 transition-all'>Reset</button>
+        </div>
+        <div className='m-2'>
+          <ul className='flex'>
+            {uniqueChannels.map((channel: any) => (
+              <li key={channel} className='m-2'>
+                {channel}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div className='w-11/12'>
+      <div>
         <BarChart data={data} />
       </div>
     </div>
