@@ -1,7 +1,6 @@
 import BarChart from './BarChart'
 
 export default async function Dashboard({ emoteLog }: any) {
-  console.log('emoteLog', emoteLog);
   const channels = emoteLog.map((log: any) => log.channel);
   const uniqueChannels = [...new Set(channels)];
 

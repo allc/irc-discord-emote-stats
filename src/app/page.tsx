@@ -1,5 +1,4 @@
 import { getEmoteLog, syncFromChatLog } from './utils'
-import BarChart from './BarChart'
 import Dashboard from './Dashboard';
 
 export default async function Home() {

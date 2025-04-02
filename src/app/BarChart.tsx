@@ -22,22 +22,14 @@ const BarChart = ({ data }: { data: any }) => {
   const chartRef = useRef<any>(null);
   const [images, setImages] = useState<any>({})
   useEffect(() => {
-    const loadedImages: any = {}
     data.labels.forEach((label: string, index: number) => {
       const image = new Image()
       image.src = '/emotes/' + label + '.png'
       image.onload = () => {
-        loadedImages[index] = image
         setImages((prev: any) => ({ ...prev, [index]: image }))
       }
     })
   }, [data.labels])
-
-  useEffect(() => {
-    if (chartRef && chartRef.current) {
-      chartRef.current.update()
-    }
-  }, [images])
 
   return (
     <Bar
