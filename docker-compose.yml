@@ -1,0 +1,19 @@
+services:
+  irc-discord-emote-stats-web:
+    build:
+      context: .
+      args:
+        DATABASE_URL: "file:/app/database.db"
+        CHATLOG_DATABASE: ${CHATLOG_DATABASE}
+    environment:
+      - DATABASE_URL=file:/app/data/database.db
+      - CHATLOG_DATABASE=/app/chatlog.db
+    volumes:
+      - ./data:/app/data
+      - ./emotes:/app/public/emotes
+      - type: bind
+        source: ${CHATLOG_DATABASE}
+        target: /app/chatlog.db
+    restart: always
+    ports:
+      - ${IP_PORT:-127.0.0.1:3000}:3000

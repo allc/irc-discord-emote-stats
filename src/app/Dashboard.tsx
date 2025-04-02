@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import BarChart from './BarChart'
-import { channel } from 'diagnostics_channel';
 
 export default function Dashboard({ emoteLog }: any) {
   const [barChartData, setBarChartData] = useState<{ labels: string[], datasets: any[] }>({ labels: [], datasets: [] });
@@ -81,14 +80,14 @@ export default function Dashboard({ emoteLog }: any) {
   useEffect(() => {
     setChannels_();
     setBarChartData_();
-  }, [emoteLog]);
+  }, [emoteLog]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [startTime, setStartTime] = useState<number>(0);
   const [endTime, setEndTime] = useState<number>(Date.now() + 5000);
 
   useEffect(() => {
     setBarChartData_(startTime, endTime);
-  }, [startTime, endTime, channelFilter]);
+  }, [startTime, endTime, channelFilter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
