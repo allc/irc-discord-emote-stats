@@ -10,7 +10,9 @@ services:
       - CHATLOG_DATABASE=/app/chatlog.db
     volumes:
       - ./data:/app/data
-      - ./emotes:/app/public/emotes
+      - type: bind
+        source: ./emotes
+        target: /app/public/emotes
       - type: bind
         source: ${CHATLOG_DATABASE}
         target: /app/chatlog.db
