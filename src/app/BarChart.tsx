@@ -25,7 +25,7 @@ const BarChart = ({ data }: { data: any }) => {
     const images_: { [index: number]: any } = {};
     const loadImages = async () => {
       const imagePromises = data.labels.map((label: string, index: number) => {
-        return new Promise<HTMLImageElement>((resolve, reject) => {
+        return new Promise<HTMLImageElement>((resolve) => {
           const image = new Image()
           image.src = '/emotes/' + label + '.png'
           image.onload = () => {
