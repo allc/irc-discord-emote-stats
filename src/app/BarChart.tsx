@@ -34,7 +34,7 @@ const BarChart = ({ data }: { data: any }) => {
   }, [data.labels])
 
   useEffect(() => {
-    if (chartRef.current) {
+    if (chartRef && chartRef.current) {
       chartRef.current.update()
     }
   }, [images])
