@@ -85,6 +85,12 @@ export default function Dashboard({ emoteLog }: any) {
   const [startTime, setStartTime] = useState<number>(0);
   const [endTime, setEndTime] = useState<number>(Date.now() + 5000);
 
+  const handleResetClick = () => {
+    setStartTime(0);
+    setEndTime(Date.now() + 5000);
+  }
+
+
   useEffect(() => {
     setBarChartData_(startTime, endTime);
   }, [startTime, endTime, channelFilter]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -113,10 +119,10 @@ export default function Dashboard({ emoteLog }: any) {
               }}
             />
           </div>
-          <button className='m-2 p-2 bg-blue-500 text-white shadow-sm shadow-blue-500/50 hover:bg-blue-600 active:bg-blue-700 transition-all'>Reset</button>
+          <button className='m-2 p-2 bg-blue-500 text-white shadow-sm shadow-blue-500/50 hover:bg-blue-600 active:bg-blue-700 transition-all' onClick={handleResetClick}>Reset</button>
         </div>
         <div className='m-2'>
-          <ul className='flex'>
+          <ul className='flex flex-wrap'>
             {channels.map((channel: any) => (
               <li
                 key={channel}
