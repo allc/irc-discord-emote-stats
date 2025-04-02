@@ -22,13 +22,25 @@ const BarChart = ({ data }: { data: any }) => {
   const chartRef = useRef<any>(null);
   const [images, setImages] = useState<any>({})
   useEffect(() => {
-    data.labels.forEach((label: string, index: number) => {
-      const image = new Image()
-      image.src = '/emotes/' + label + '.png'
-      image.onload = () => {
-        setImages((prev: any) => ({ ...prev, [index]: image }))
-      }
-    })
+    const images_: { [index: number]: any } = {};
+    const loadImages = async () => {
+      const imagePromises = data.labels.map((label: string, index: number) => {
+        return new Promise<HTMLImageElement>((resolve, reject) => {
+          const image = new Image()
+          image.src = '/emotes/' + label + '.png'
+          image.onload = () => {
+            images_[index] = image
+            resolve(image)
+          }
+          image.onerror = () => {
+            resolve(null as any)
+          }
+        });
+      });
+      await Promise.all(imagePromises);
+      setImages(images_);
+    }
+    loadImages();
   }, [data.labels])
 
   return (
