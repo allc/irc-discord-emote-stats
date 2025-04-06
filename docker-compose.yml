@@ -5,6 +5,7 @@ services:
       args:
         DATABASE_URL: "file:/app/database.db"
         CHATLOG_DATABASE: ${CHATLOG_DATABASE}
+        BASE_URL: ${BASE_URL}
     environment:
       - DATABASE_URL=file:/app/data/database.db
       - CHATLOG_DATABASE=/app/chatlog.db

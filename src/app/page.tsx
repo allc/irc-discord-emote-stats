@@ -1,4 +1,4 @@
-import { getEmoteLog, syncFromChatLog } from './utils'
+import { getEmoteLog, syncFromChatLog } from '@/lib/utils'
 import Dashboard from './Dashboard';
 
 export const dynamic = 'force-dynamic'

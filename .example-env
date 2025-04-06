@@ -5,3 +5,4 @@
 # See the documentation for all the connection string options: https://pris.ly/d/connection-strings
 
 CHATLOG_DATABASE="./thelounge.sqlite3"
+BASE_URL="http://localhost:3000"

@@ -30,6 +30,9 @@ ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 RUN npx prisma generate
 
+ARG BASE_URL
+ENV BASE_URL=${BASE_URL}
+
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build ; \
